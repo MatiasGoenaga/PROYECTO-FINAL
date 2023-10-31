@@ -1,0 +1,6 @@
+[
+  { "id": 1, "tipo": "Casa", "factor": 1.75 },
+  { "id": 2, "tipo": "Departamento/Edificio", "factor": 2.5 },
+  { "id": 3, "tipo": "Local Comercial", "factor": 3.6 },
+  { "id": 4, "tipo": "Oficina", "factor": 3 }
+]

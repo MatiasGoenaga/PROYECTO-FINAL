@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "tipo": "Ciudad de Buenos Aires",
+    "factor": 1.68
+  },
+  { "id": 2, "tipo": "Pcia. de Buenos Aires", "factor": 1.25 },
+  { "id": 3, "tipo": "Noroeste", "factor": 1.55 },
+  { "id": 4, "tipo": "Cuyo", "factor": 1.6 },
+  { "id": 5, "tipo": "Noreste", "factor": 1.4 },
+  { "id": 6, "tipo": "Patagonia", "factor": 2.1 }
+]
