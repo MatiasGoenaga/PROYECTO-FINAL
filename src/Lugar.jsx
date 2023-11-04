@@ -1,32 +1,31 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { CotiContext } from "./CotizadorProvider";
 
 function Lugar() {
-  const [ubicaciones, setUbicaciones] = useState([]);
-  useEffect(() => {
-    fetch("data2.json")
-      .then((res) => res.json())
-      .then((dato) => setUbicaciones(dato));
-  }, []);
-  console.log(ubicaciones);
+  const { ubicaciones, selectedOption, setSelectedOption } =
+    useContext(CotiContext);
 
-  const [selectedLugar, setSelectedLugar] = useState();
   const handleCargarLugar = (event) => {
-    console.log(event.target.value);
-    setSelectedLugar(event.target.value);
+    const lugarelegido = ubicaciones.find(
+      (ubicacion) => ubicacion.id == event.target.value
+    );
+    setSelectedOption({ ...selectedOption, lugarelegido });
   };
-
-  console.log(parseFloat(selectedLugar));
-  console.log(typeof selectedLugar);
 
   return (
     <>
       <div>
         <label htmlFor="ubicacion">Ubicación de la Vivienda:</label>
       </div>
-      <select name="ubicacion" id="ubicacion" onChange={handleCargarLugar}>
+      <select
+        name="ubicacion"
+        id="ubicacion"
+        onChange={handleCargarLugar}
+        required
+      >
         <option value={[]} selected disabled></option>
         {ubicaciones.map((ubicacion) => (
-          <option key={"ubicacion" + ubicacion.id} value={ubicacion.factor}>
+          <option key={ubicacion.id} value={ubicacion.id}>
             {ubicacion.tipo}
           </option>
         ))}

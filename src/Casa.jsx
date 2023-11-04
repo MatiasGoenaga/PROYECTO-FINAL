@@ -1,19 +1,15 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { CotiContext } from "./CotizadorProvider";
 
 function Casa() {
-  const [viviendas, setViviendas] = useState([]);
-  useEffect(() => {
-    fetch("data.json")
-      .then((res) => res.json())
-      .then((dato) => setViviendas(dato));
-  }, []);
-  console.log(viviendas);
-
-  const [selectedVivienda, setSelectedVivienda] = useState();
+  const { viviendas, selectedOption, setSelectedOption } =
+    useContext(CotiContext);
 
   const handleCargarVivienda = (event) => {
-    console.log(event.target.value);
-    setSelectedVivienda(event.target.value);
+    const viviendaelegida = viviendas.find(
+      (vivienda) => vivienda.id == event.target.value
+    );
+    setSelectedOption({ ...selectedOption, viviendaelegida });
   };
 
   return (
@@ -21,15 +17,19 @@ function Casa() {
       <div>
         <label htmlFor="vivienda">Vivienda:</label>
       </div>
-      <select name="vivienda" id="vivienda" onChange={handleCargarVivienda}>
+      <select
+        name="vivienda"
+        id="vivienda"
+        onChange={handleCargarVivienda}
+        required
+      >
         <option key={"vivienda"} value={[]} selected disabled></option>
-        {viviendas.map((item) => (
-          <option key={"vivienda" + item.id} value={item.factor}>
-            {item.tipo}
+        {viviendas.map((vivienda) => (
+          <option key={vivienda.id} value={vivienda.id}>
+            {vivienda.tipo}
           </option>
         ))}
       </select>
-      <h1>{selectedVivienda}</h1>
     </>
   );
 }

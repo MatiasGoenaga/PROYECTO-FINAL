@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import Header2 from "./Header2";
-import { useEffect, useState } from "react";
+import { CotiContext } from "./CotizadorProvider";
+import { useEffect, useState, useContext } from "react";
 
 function Historial() {
   const [historialCotizaciones, setHistorialCotizaciones] = useState([]);
+  const { setSelectedOption, setMetros } = useContext(CotiContext);
 
   useEffect(() => {
     const cargarHistorial = () => {
@@ -16,14 +18,22 @@ function Historial() {
 
   const retornoTablaHTML = (fila) => {
     return (
-      <tr key={fila.fechaCotizacion}>
+      <tr key={fila.poliza}>
         <td>{fila.fechaCotizacion}</td>
         <td>{fila.vivienda}</td>
         <td>{fila.ubicacion}</td>
-        <td>{fila.metrosCuadrados}</td>
-        <td>$ {fila.poliza.toLocaleString()}</td>
+        <td>{fila.metro}</td>
+        <td>${fila.poliza}</td>
       </tr>
     );
+  };
+  const Borrado = () => {
+    setSelectedOption("");
+    setMetros("");
+  };
+  const borrar_Historial = () => {
+    localStorage.clear();
+    setHistorialCotizaciones([]);
   };
 
   return (
@@ -45,10 +55,11 @@ function Historial() {
             {historialCotizaciones.map((fila) => retornoTablaHTML(fila))}
           </tbody>
         </table>
-        <div>
+        <div className="tabla">
           <Link to="/">
-            <button>Volver a Inicio</button>
+            <button onClick={Borrado}>Volver a Inicio</button>
           </Link>
+          <button onClick={borrar_Historial}>Borrar Historial</button>
         </div>
       </div>
     </>
