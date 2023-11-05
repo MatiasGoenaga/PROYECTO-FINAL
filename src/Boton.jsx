@@ -3,8 +3,10 @@ import { useState, useContext } from "react";
 import { CotiContext } from "./CotizadorProvider";
 
 function Boton() {
-  const { selectedOption } = useContext(CotiContext);
+  const { selectedOption, setSelectedOption } = useContext(CotiContext);
   const [valorPoliza, setValorPoliza] = useState(0);
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
 
   const Cotizar = () => {
     if (
@@ -19,6 +21,8 @@ function Boton() {
         selectedOption.lugarelegido?.factor *
         selectedOption.metros;
       setValorPoliza(cotizacion.toFixed(2));
+      setShow(true);
+      setShow2(true);
       alerta("", "Cotización realizada con éxito ", "success");
     } else {
       alerta("", "Debes completar todos los datos ", "warning");
@@ -39,6 +43,7 @@ function Boton() {
       "historialCotizaciones",
       JSON.stringify(historialCotizaciones)
     );
+    setSelectedOption("");
     alerta2("", "Cotización Guardada", "success");
   };
 
@@ -71,11 +76,13 @@ function Boton() {
         </button>
       </div>
       <div className="final">
-        <h2>El Valor de la Poliza es: $ {valorPoliza} </h2>
+        {show ? <h2>El Valor de la Poliza es: $ {valorPoliza} </h2> : null}
         <div>
-          <button className="guardar_historial" onClick={Guardar}>
-            GUARDAR EN HISTORIAL
-          </button>
+          {show2 ? (
+            <button className="guardar_historial" onClick={Guardar}>
+              GUARDAR EN HISTORIAL
+            </button>
+          ) : null}
         </div>
       </div>
     </>

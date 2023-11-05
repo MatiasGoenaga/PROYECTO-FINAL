@@ -138,12 +138,15 @@ button:focus-visible {
   color: #ffffff;
 }
 .final {
-  margin-bottom: 25px;
   background-color: beige;
 }
 .tabla {
   display: flex;
   justify-content: space-between;
+}
+.fin {
+  height: 2px;
+  background-color: #ffffff;
 }
 
 @media screen and (max-width: 425px) {

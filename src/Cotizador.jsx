@@ -3,6 +3,7 @@ import Casa from "./Casa";
 import Lugar from "./Lugar";
 import Boton from "./Boton";
 import Metros from "./Metros";
+import Fin from "./Fin";
 
 function Cotizador() {
   const form = useRef();
@@ -20,6 +21,7 @@ function Cotizador() {
           <Lugar />
           <Metros />
           <Boton />
+          <Fin />
         </form>
       </div>
     </>
