@@ -7,7 +7,6 @@ export const CotizadorProvider = ({ children }) => {
   const [viviendas, setViviendas] = useState([]);
   const [selectedOption, setSelectedOption] = useState({});
   const [ubicaciones, setUbicaciones] = useState([]);
-  const [metros, setMetros] = useState(20);
 
   useEffect(() => {
     fetch("data.json")
@@ -26,8 +25,6 @@ export const CotizadorProvider = ({ children }) => {
     ubicaciones,
     selectedOption,
     setSelectedOption,
-    metros,
-    setMetros,
   };
 
   return <CotiContext.Provider value={data}>{children}</CotiContext.Provider>;

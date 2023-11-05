@@ -3,25 +3,33 @@ import { useState, useContext } from "react";
 import { CotiContext } from "./CotizadorProvider";
 
 function Boton() {
-  const { selectedOption, metros } = useContext(CotiContext);
+  const { selectedOption } = useContext(CotiContext);
   const [valorPoliza, setValorPoliza] = useState(0);
 
   const Cotizar = () => {
-    const costoM2 = 35.86;
-    const cotizacion =
-      costoM2 *
-      selectedOption.viviendaelegida?.factor *
-      selectedOption.lugarelegido?.factor *
-      metros.metros;
-    setValorPoliza(cotizacion.toFixed(2));
-    alerta("", "Cotización realizada con éxito.", "success");
+    if (
+      selectedOption.viviendaelegida &&
+      selectedOption.lugarelegido &&
+      selectedOption.metros
+    ) {
+      const costoM2 = 35.86;
+      const cotizacion =
+        costoM2 *
+        selectedOption.viviendaelegida?.factor *
+        selectedOption.lugarelegido?.factor *
+        selectedOption.metros;
+      setValorPoliza(cotizacion.toFixed(2));
+      alerta("", "Cotización realizada con éxito ", "success");
+    } else {
+      alerta("", "Debes completar todos los datos ", "warning");
+    }
   };
   const Guardar = () => {
     const cotizacion2 = {
       fechaCotizacion: new Date().toLocaleString(),
       vivienda: selectedOption.viviendaelegida.tipo,
       ubicacion: selectedOption.lugarelegido.tipo,
-      metro: metros.metros,
+      metro: selectedOption.metros,
       poliza: valorPoliza,
     };
     const historialCotizaciones =

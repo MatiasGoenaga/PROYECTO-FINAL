@@ -24,7 +24,6 @@ a:hover {
 }
 
 body {
-  min-width: 320px;
   margin: 0;
   display: flex;
   place-items: center;
@@ -34,6 +33,7 @@ body {
 .flex_header {
   background-color: darkorchid;
   display: flex;
+  box-shadow: 26px 28px 15px -8px rgba(0, 0, 0, 0.15);
 }
 .fondo {
   color: #ffffff;
@@ -144,4 +144,12 @@ button:focus-visible {
 .tabla {
   display: flex;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 425px) {
+  body {
+    width: 768px;
+    min-height: 100vh;
+    background-color: white;
+  }
 }

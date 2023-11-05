@@ -17,13 +17,8 @@ function Casa() {
       <div>
         <label htmlFor="vivienda">Vivienda:</label>
       </div>
-      <select
-        name="vivienda"
-        id="vivienda"
-        onChange={handleCargarVivienda}
-        required
-      >
-        <option key={"vivienda"} value={[]} selected disabled></option>
+      <select name="vivienda" id="vivienda" onChange={handleCargarVivienda}>
+        <option key={"vivienda"} value={[]}></option>
         {viviendas.map((vivienda) => (
           <option key={vivienda.id} value={vivienda.id}>
             {vivienda.tipo}

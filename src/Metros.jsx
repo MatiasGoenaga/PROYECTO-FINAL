@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { CotiContext } from "./CotizadorProvider";
 
 function Metros() {
-  const { metros, setMetros } = useContext(CotiContext);
+  const { selectedOption, setSelectedOption } = useContext(CotiContext);
 
   const handleMetros = (event) => {
     console.log(event.target.value);
-    setMetros({ ...metros, [event.target.name]: event.target.value });
+    const metros = parseInt(event.target.value, 10);
+    setSelectedOption({ ...selectedOption, metros });
   };
   return (
     <>
@@ -20,7 +21,6 @@ function Metros() {
         min={20}
         max={500}
         onChange={handleMetros}
-        required
       />
     </>
   );

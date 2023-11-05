@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react";
 
 function Historial() {
   const [historialCotizaciones, setHistorialCotizaciones] = useState([]);
-  const { setSelectedOption, setMetros } = useContext(CotiContext);
+  const { setSelectedOption } = useContext(CotiContext);
 
   useEffect(() => {
     const cargarHistorial = () => {
@@ -29,7 +29,6 @@ function Historial() {
   };
   const Borrado = () => {
     setSelectedOption("");
-    setMetros("");
   };
   const borrar_Historial = () => {
     localStorage.clear();

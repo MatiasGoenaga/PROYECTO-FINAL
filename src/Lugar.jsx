@@ -17,13 +17,8 @@ function Lugar() {
       <div>
         <label htmlFor="ubicacion">Ubicación de la Vivienda:</label>
       </div>
-      <select
-        name="ubicacion"
-        id="ubicacion"
-        onChange={handleCargarLugar}
-        required
-      >
-        <option value={[]} selected disabled></option>
+      <select name="ubicacion" id="ubicacion" onChange={handleCargarLugar}>
+        <option value={[]}></option>
         {ubicaciones.map((ubicacion) => (
           <option key={ubicacion.id} value={ubicacion.id}>
             {ubicacion.tipo}
