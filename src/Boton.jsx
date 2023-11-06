@@ -6,7 +6,6 @@ function Boton() {
   const { selectedOption, setSelectedOption } = useContext(CotiContext);
   const [valorPoliza, setValorPoliza] = useState(0);
   const [show, setShow] = useState(false);
-  const [show2, setShow2] = useState(false);
 
   const Cotizar = () => {
     if (
@@ -22,7 +21,6 @@ function Boton() {
         selectedOption.metros;
       setValorPoliza(cotizacion.toFixed(2));
       setShow(true);
-      setShow2(true);
       alerta("", "Cotización realizada con éxito ", "success");
     } else {
       alerta("", "Debes completar todos los datos ", "warning");
@@ -75,16 +73,17 @@ function Boton() {
           COTIZAR
         </button>
       </div>
-      <div className="final">
-        {show ? <h2>El Valor de la Poliza es: $ {valorPoliza} </h2> : null}
-        <div>
-          {show2 ? (
+
+      {show ? (
+        <div className="final">
+          <h2>El Valor de la Poliza es: $ {valorPoliza} </h2>
+          <div>
             <button className="guardar_historial" onClick={Guardar}>
               GUARDAR EN HISTORIAL
             </button>
-          ) : null}
+          </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 }
